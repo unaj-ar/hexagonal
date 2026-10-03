@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: hexagonal-demo
+
+  # Configuración de la base de datos H2 en memoria
+  datasource:
+    url: jdbc:h2:mem:hexagonaldb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  # Consola web de H2 (solo para desarrollo/demo)
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  # Configuración de JPA/Hibernate
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop   # Crea el esquema al iniciar, lo elimina al cerrar
+    show-sql: true             # Muestra las queries SQL en consola (útil para aprender)
+    properties:
+      hibernate:
+        format_sql: true       # Formatea el SQL para mejor legibilidad
+
+# Configuración del servidor
+server:
+  port: 8080
+  error:
+    include-message: always   # Incluye el mensaje de error en las respuestas
+
+# Logging
+logging:
+  level:
+    com.unaj.hexagonal: DEBUG
+    org.springframework.web: INFO
